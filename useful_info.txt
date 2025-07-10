@@ -1,0 +1,41 @@
+To convert UI file to python class: pyside6-uic filename.ui -o ui_classname.py
+
+Explanation of how stacked widget works (used for display): https://www.youtube.com/watch?v=Vq1laKeSk9M
+
+To create a new UI that is displayed within the display:
+    1. Qt Designer File->New->Widget, design the ui.
+    2. Save .ui file and generate a python class (above), import into main.py - all same as with mainwindow
+    3. Create a wrapper class inheriting from QWidget in a new python file (QStackedWidget can only stack objects that are QWidgets themselves). Any code for this feature can be written in this file (buttons or anything like that). e.g. progress.py
+        from PySide6.QtWidgets import QWidget
+        from ui_progress import Ui_progressDisplay
+
+        class ProgressDisplay(Ui_progressDisplay, QWidget):
+            def __init__(self):
+                super().__init__()
+                self.setupUi(self)
+
+    4. Import wrapper class (from progress import ProgressDisplay), instantiate the wrapper class in the constructor of mainwindow, and add it to the QStackedWidget (display):
+        self.progressDisplay = ProgressDisplay()
+        self.display.addWidget(self.progressDisplay)
+    5. self.display.setCurrentWidget(self.progressDisplay) will change the display to the ui at runtime.
+
+Using github:
+    1. in github desktop, pull any edits from the origin to your local version (generated at the start when you cloned the repository in github desktop)
+    2. edit your local version
+    3. go back on github desktop, hit commit to main.
+    4. if someone else has added something since you last pulled from the origin, you have to pull their changes first.
+    5. push your changes to the main
+    note: only push code to the origin when there are no errors. also, you should commit changes as often as you can without errors. for example, each function you modify during your task should be committed one function at a time to keep the main repo as up to date as possible.
+
+Using the database:
+    Don't use the database directly with SQL code if possible. Use the functions suggested by the IDE pls, just for extra safety.
+    Do not instantiate the database in your own files. Use the one in main.py. Maybe pass it as a parameter? Not sure
+    If the IDE suggests you pass user_id as a parameter, don't do it, or at least pass it as None. This is handled in the database class.
+    Currently, database works as follows (to be changed as program gets developed)
+    - User can log their bodyweights and track their progress. This is largely separate to the rest of the program
+    -- Users can start a new workout or in other words a new session
+    -- Users can then add exercises to that session, including exercise name, sets, reps etc.
+    -- Users can start a new workout by just calling the create new session function.
+    -- Any sort of progress data can easily be added as needed
+
+
