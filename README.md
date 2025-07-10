@@ -18,15 +18,12 @@ This was a university group project for the Programming 1 (CM10025), following S
 
 ## 🧠 My Contribution
 
-I was back-end team leader and was first and foremost responsible for the **database design** and **backend logic**, including:
+I was Progress and data visualisation leader and was first and foremost responsible for the **graph design** and **backend logic**, including:
 
-- Creating the workout and bodyweight logging system  
-- Validating and storing user data securely  
-- Future proofing the database for our future concepts 
+- Creating the graphs that show user's data against time
+- Making sure it linked with the database so that the information shown is up to date  
 - Defensive programming to catch and prevent invalid inputs  
-- Integrating database functionality with PySide6 GUI components  
-
-The database followed professional design principles (normalization, foreign keys, referential integrity) and was built with extensibility in mind (e.g. multi-user support, RPE tracking).
+- Integrating progress functionality with PySide6 GUI components  
 
 ---
 
